@@ -3,6 +3,7 @@ import pytest
 from tools.logger import log
 from common.readconfig import ini
 from page_object.loginpage import LoginPage
+from tools.times import datatime_strftime
 
 class TestLogin:
 
@@ -32,4 +33,4 @@ class TestLogin:
         log.info("点击登录按钮")
 
 if __name__ == '__main__':
-    pytest.main(['TestCase/test_login.py'])
+    pytest.main(['-s','TestCase/test_login.py','--pytest_report',datatime_strftime()+'report.html'])
