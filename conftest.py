@@ -4,7 +4,7 @@ from selenium import webdriver
 from common.inspect import inspect_element
 from tools.times import datatime_strftime
 import os
-
+from config.conf import LOG_PATH
 
 driver = None
 @pytest.fixture(scope='session', autouse=True)
@@ -28,6 +28,7 @@ def pytest_configure(config):
         path_list = list(os.path.split(config.option.htmlpath))
         path_list.insert(-1, datatime_strftime())
         config.option.htmlpath = os.path.join(*tuple(path_list))
+
 
 @pytest.mark.hookwrapper
 def pytest_runtest_makereport(item):
@@ -81,4 +82,3 @@ def _capture_screenshot():
 
     '''
     return driver.get_screenshot_as_base64()
-

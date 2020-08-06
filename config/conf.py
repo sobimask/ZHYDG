@@ -11,7 +11,7 @@ INI_PATH = os.path.join(BASE_DIR,'config','config.ini')
 ELEMENT_PATH = os.path.join(BASE_DIR,'page_element')
 
 #日志目录
-LOG_PATH = os.path.join(BASE_DIR,'logs')
+LOG_PATH = os.path.join(BASE_DIR,'logs\\')
 
 #报告目录
 REPORT_PATH = os.path.join(BASE_DIR,'report')

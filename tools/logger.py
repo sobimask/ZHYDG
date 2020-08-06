@@ -1,41 +1,12 @@
-import os,sys
-sys.path.append(r'D:\PycharmProjects\ZHYDG')
-import logging
+from nb_log import LogManager
 from config.conf import LOG_PATH
 from tools.times import datatime_strftime
+import os
 
-class Log:
-    def __init__(self):
-        self.logger = logging.getLogger()
-        if not self.logger.handlers:
-            self.logger.setLevel(logging.DEBUG)
+def log(text):
+    logger = LogManager('INFO').get_logger_and_add_handlers(is_add_stream_handler=True,
+                                                log_filename=LOG_PATH+datatime_strftime()+'.log')
+    logger.info(text)
 
-        #创建一个handle写入文件
-        fh = logging.FileHandler(self.log_path, encoding='utf-8')
-        fh.setLevel(logging.INFO)
-
-        #创建一个handle输出到控制台
-        ch = logging.StreamHandler()
-        ch.setLevel(logging.INFO)
-
-        #自定义输出格式
-        formatter =  logging.Formatter(self.fmt)
-        fh.setFormatter(formatter)
-        ch.setFormatter(formatter)
-
-        #添加到hendle
-        self.logger.addHandler(fh)
-        self.logger.addHandler(ch)
-
-    @property
-    def log_path(self):
-        if not os.path.exists(LOG_PATH):
-            os.makedirs(LOG_PATH)
-        return os.path.join(LOG_PATH,'{}.log'.format(datatime_strftime()))
-    @property
-    def fmt(self):
-        return '%(levelname)s\t%(asctime)s\t[%(filename)s:%(lineno)d]\t%(message)s'
-log = Log().logger
-
-if __name__ =='__main__':
-    log.info('你好')
+if __name__ == '__main__':
+    log('日志开始')
