@@ -1,0 +1,4 @@
+# ==两边注意不要有空格，冒号后面要有一个空格
+username: 'xpath==//*[@id="app"]/div/div[2]/div[2]/div[2]/form/div[1]/div/div/input'  #//*[@id="app"]/div/div[2]/div[2]/div[2]/form/div[1]/div/div/input
+password: "xpath==//input[@type='password']"
+loginbutton: "xpath==//button/span"
